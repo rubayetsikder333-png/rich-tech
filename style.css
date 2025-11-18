@@ -3,331 +3,311 @@ body {
     font-family: 'Montserrat', sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #000000;
-    color: #F0F0F0; 
+    background-color: #000000; /* Black Background */
+    color: #F0F0F0; /* Light Gray/White Text */
     line-height: 1.6;
-    overflow-x: hidden;
+    overflow-x: hidden; /* Prevent horizontal scroll due to animations */
 }
+
 .container {
     max-width: 1200px;
     margin: 0 auto;
     padding: 0 20px;
 }
+
 h1, h2, h3 {
-    font-family: 'Playfair Display', serif; 
-    color: #FF0000; /* Rich Red Accent */
+    font-family: 'Playfair Display', serif;
+    color: #FF0000; /* Rich Red Accent Color */
     text-align: center;
 }
-section {
-    padding: 80px 0;
+
+/* Navbar */
+.navbar {
+    position: fixed;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.9);
+    padding: 15px 0;
+    z-index: 1000;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+}
+
+.navbar .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.navbar .logo {
+    color: #FF0000;
+    font-size: 28px;
+    margin: 0;
+}
+
+.navbar ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+}
+
+.navbar ul li a {
+    color: #F0F0F0;
+    text-decoration: none;
+    padding: 10px 15px;
+    transition: color 0.3s;
+}
+
+.navbar ul li a:hover {
+    color: #FF0000;
+}
+
+
+/* General Section Styles */
+.info-section {
+    padding: 100px 0;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.header-text {
     text-align: center;
-    position: relative; /* For character positioning */
-}
-a { color: #FF0000; text-decoration: none; transition: color 0.3s ease; }
-a:hover { color: #E00000; }
-
-/* Red Dot for Headings */
-.red-dot { 
-    width: 10px; height: 10px; 
-    background-color: #FF0000; 
-    border-radius: 50%; 
-    display: inline-block; 
-    margin-right: 10px; 
-    box-shadow: 0 0 8px rgba(255, 0, 0, 0.7); 
+    padding: 50px 0;
 }
 
-/* 1. PRELOADER STYLING */
+.header-text h1 {
+    font-size: 60px;
+    margin-bottom: 10px;
+}
+
+.header-text h2 {
+    font-size: 24px;
+    color: #F0F0F0;
+    margin-bottom: 5px;
+}
+
+.experience-box {
+    border: 2px solid #FF0000;
+    padding: 10px 20px;
+    display: inline-block;
+    margin-top: 20px;
+    font-size: 18px;
+    color: #F0F0F0;
+}
+
+/* --- PRELOADER STYLES (Animation 1) --- */
 #preloader-screen {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: #0d0d0d;
+    background-color: #000000;
+    z-index: 9999;
     display: flex;
     justify-content: center;
     align-items: center;
-    z-index: 9999;
+    flex-direction: column;
 }
-.preloader-content {
-    text-align: center;
-    transform: scale(0.8);
-}
-#loading-message {
-    font-size: 1.2em;
-    color: #FFFFFF;
-    letter-spacing: 2px;
-    opacity: 0;
-    margin-top: 30px;
-}
-.assembly-container {
+
+.tool-assembly-box {
     position: relative;
-    width: 300px;
-    height: 200px;
-    margin: 0 auto;
+    width: 250px;
+    height: 250px;
+    margin-bottom: 20px;
 }
+
 .tool {
     position: absolute;
-    border: 1px solid #1a1a1a;
-    background-color: #111;
-    box-shadow: 0 0 5px rgba(255, 0, 0, 0.3);
-    transform: translate(0, 0) scale(0.1) rotate(0deg); 
-}
-.tool-monitor { width: 120px; height: 90px; border-top: 5px solid #FF0000; left: 90px; top: 10px;}
-.tool-chair { width: 50px; height: 80px; border-radius: 5px; background-color: #222; left: 20px; top: 100px; }
-.tool-keyboard { width: 100px; height: 15px; background-color: #333; left: 150px; top: 120px; }
-.tool-mouse { width: 15px; height: 20px; border-radius: 50%; background-color: #FF0000; left: 260px; top: 125px; }
-.tool-person { width: 30px; height: 50px; border-radius: 50% 50% 0 0; background-color: #E00000; left: 30px; top: 120px; }
-
-/* 2. Navigation Bar */
-.navbar {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    background: rgba(0, 0, 0, 0.9);
-    padding: 15px 50px;
-    z-index: 1000;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
-}
-.navbar .logo { font-family: 'Playfair Display', serif; font-size: 1.8em; color: #FF0000; }
-.nav-links { list-style: none; margin: 0; padding: 0; display: flex; }
-.nav-links li { margin-left: 30px; }
-.nav-links a { color: #F0F0F0; position: relative; padding-bottom: 5px;}
-.nav-links a:hover { color: #FF0000; }
-.nav-links a::after {
-    content: '';
-    position: absolute;
-    width: 0;
-    height: 2px;
-    background: #FF0000;
-    bottom: 0;
-    left: 0;
-    transition: width 0.3s ease;
-}
-.nav-links a:hover::after { width: 100%; }
-
-/* 3. Hero/Welcome Section */
-.hero-section {
-    position: relative;
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    color: #FFFFFF;
-    text-align: center;
-    overflow: hidden;
-    background-color: #000000;
-}
-.hero-content { z-index: 1; }
-.hero-content h1 {
-    font-size: 4em;
-    color: #FFFFFF; 
-    text-shadow: 0 0 10px rgba(255, 0, 0, 0.5);
-}
-.hero-content .tagline {
-    font-size: 1.5em;
-    margin-bottom: 40px;
-    color: #FF0000;
-    letter-spacing: 2px;
-}
-.cta-button {
+    width: 50px;
+    height: 50px;
     background-color: #FF0000;
-    color: #FFFFFF;
-    padding: 15px 35px;
     border-radius: 5px;
-    font-size: 1.1em;
-    font-weight: 600;
-    transition: background-color 0.3s ease, transform 0.2s ease;
-    display: inline-block;
+    opacity: 0;
+    transform: scale(0);
 }
-.cta-button:hover { background-color: #E00000; transform: translateY(-3px); }
 
-/* Animation 2: Welcome Character */
+/* Final positions (Relative to the center of the 250x250 box) */
+.tool-monitor { top: 30px; left: 100px; width: 50px; height: 40px; }
+.tool-chair { top: 150px; left: 150px; width: 60px; height: 80px; }
+.tool-keyboard { top: 180px; left: 60px; width: 80px; height: 20px; }
+.tool-mouse { top: 190px; left: 20px; width: 20px; height: 30px; }
+.tool-person { top: 80px; left: 125px; width: 50px; height: 80px; background-color: #F0F0F0; }
+
+#loading-message {
+    color: #FF0000;
+    font-size: 20px;
+    opacity: 0;
+}
+
+/* --- WELCOME CHARACTER (Animation 2) --- */
 #welcome-character {
     position: absolute;
-    font-size: 80px; /* Large Icon for Character */
-    right: -100px; /* Starts off-screen */
     top: 50%;
-    transform: translateY(-50%) rotate(0deg);
-    z-index: 5;
-    opacity: 0;
-    background: #222;
-    padding: 20px;
-    border-radius: 50%;
-    box-shadow: 0 0 20px rgba(255, 0, 0, 0.5);
-}
-
-
-/* 4. About & Education Section Grid */
-.info-section { 
-    background-color: #0d0d0d; 
-    padding-top: 100px;
-    padding-bottom: 100px;
-}
-.main-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr; 
-    gap: 80px;
-    align-items: flex-start;
-    text-align: left;
-}
-.personal-info h2, .education-section h2 {
-    font-size: 1.8em;
-    margin-bottom: 30px;
-    border-bottom: 2px solid #FF0000;
-    padding-bottom: 10px;
-    text-align: left;
-}
-.info-item, .edu-item {
-    font-size: 1.1em;
-    margin-bottom: 15px;
-    padding-left: 10px;
-    border-left: 3px solid #333;
-}
-.info-item span, .edu-item span { color: #AAAAAA; }
-.info-item span a { color: #FF0000; }
-.experience-item { color: #FF0000; font-weight: 600; }
-
-
-/* Animation 3: Student Character (Education Section) */
-#student-character {
-    position: absolute;
-    font-size: 100px; /* Large Icon */
-    right: 20px;
-    top: 100px;
-    opacity: 0; /* Hidden initially */
-    transform: scale(0.5) rotate(-15deg);
-    z-index: 5;
-    text-shadow: 0 0 10px rgba(255, 0, 0, 0.8);
-}
-.education-section {
-    position: relative;
-    padding-right: 150px; /* Make space for character */
-}
-.education-list {
-    margin-top: 20px;
-}
-
-
-/* 5. SKILLS SECTION */
-.skills-section { 
-    background-color: #000000; 
-    border-top: 1px solid #1a1a1a;
-    padding-top: 100px;
-    padding-bottom: 150px;
-}
-.skills-section h2 { margin-bottom: 50px; }
-
-/* Animation 4: Robot and Magic Box */
-#skill-robot {
-    position: absolute;
-    font-size: 100px; /* Large Robot Icon */
-    left: 50%;
-    top: 0;
-    transform: translateX(-50%) translateY(0);
-    z-index: 10;
-    opacity: 0; /* Hidden initially */
-}
-#magic-box {
-    position: absolute;
-    font-size: 120px; /* Large Box Icon */
-    left: 50%;
-    top: 150px;
-    transform: translateX(-50%);
-    opacity: 0; /* Hidden initially */
-    z-index: 9;
-}
-
-.skills-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); 
-    gap: 30px;
-    margin-top: 50px;
-}
-.skill-item {
-    background-color: #111111;
-    border: 2px solid #FF0000;
-    border-radius: 8px;
+    right: 0; 
+    transform: translateY(-50%);
+    width: 100px;
     height: 150px;
-    display: flex;
-    flex-direction: column; /* To stack icon and text */
-    justify-content: center;
-    align-items: center;
-    font-size: 1.2em;
-    font-weight: 600;
-    text-align: center;
-    box-shadow: 0 0 15px rgba(255, 0, 0, 0.3);
-    transition: transform 0.3s ease;
-    cursor: default;
-    opacity: 0; /* JS will reveal these */
+    opacity: 0;
+    /* CSS Character Structure */
 }
-.skill-item:hover { transform: scale(1.05); }
+#welcome-character .head {
+    width: 50px; height: 50px; background: #F0F0F0; border-radius: 50%; margin: 0 auto;
+}
+#welcome-character .body {
+    width: 70px; height: 100px; background: #FF0000; border-radius: 5px; margin: -5px auto 0;
+}
 
-/* Skill Icons (using emojis as placeholders) */
-.skill-item::before { font-size: 2em; margin-bottom: 5px; }
-.skill-item[data-icon="fb"]::before { content: '📘'; }
-.skill-item[data-icon="fb"]::after { content: 'Facebook Ads'; font-size: 0.7em;}
+/* --- EDUCATION SECTION (Animation 3) --- */
+#education h2 {
+    margin-bottom: 50px;
+}
+.education-content {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+.edu-item {
+    border-left: 3px solid #FF0000;
+    padding-left: 20px;
+    margin-bottom: 25px;
+    opacity: 0; /* Initial state for animation */
+}
+.edu-item h3 {
+    color: #F0F0F0;
+    text-align: left;
+    margin: 0;
+    font-size: 20px;
+}
+.edu-item p {
+    color: #AAAAAA;
+    text-align: left;
+    margin: 5px 0 0;
+}
+#student-character {
+    width: 100px;
+    height: 150px;
+    position: relative;
+    opacity: 0; /* Initial state for animation */
+    transform: scale(0.5) rotate(15deg);
+}
+#student-character .book {
+    width: 70px; height: 80px; background: #FF0000; border: 3px solid #F0F0F0;
+    position: absolute; top: 0; left: 0;
+}
+#student-character .bag {
+    width: 50px; height: 60px; background: #F0F0F0; position: absolute; bottom: 0; right: 0;
+}
 
-.skill-item[data-icon="ig"]::before { content: '📸'; }
-.skill-item[data-icon="ig"]::after { content: 'Instagram Ads'; font-size: 0.7em;}
+/* --- SKILLS SECTION (Animation 4) --- */
+.skills-content {
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    gap: 80px;
+    position: relative;
+    padding-top: 50px;
+}
 
-.skill-item[data-icon="smm"]::before { content: '🛠️'; }
-.skill-item[data-icon="smm"]::after { content: 'SMM & Setup'; font-size: 0.7em;}
+#skill-robot {
+    position: relative;
+    opacity: 0; /* Initial state for animation */
+    top: 100px;
+}
+.robot-head {
+    width: 80px; height: 60px; background: #F0F0F0; border: 4px solid #FF0000;
+    border-radius: 10px; margin: 0 auto;
+    position: relative;
+}
+.robot-head::before {
+    content: '';
+    display: block;
+    width: 10px; height: 10px; background: #FF0000; border-radius: 50%;
+    position: absolute; top: 10px; left: 35px;
+}
+.robot-body {
+    width: 100px; height: 80px; background: #FF0000; border-radius: 5px; margin: 0 auto;
+}
 
-.skill-item[data-icon="google"]::before { content: '🔍'; }
-.skill-item[data-icon="google"]::after { content: 'Google Ads'; font-size: 0.7em;}
+#magic-box {
+    position: relative;
+    width: 150px;
+    height: 100px;
+    opacity: 0; /* Initial state for animation */
+    top: 100px;
+}
+.box-top {
+    width: 150px;
+    height: 30px;
+    background-color: #FF0000;
+    position: absolute;
+    top: -15px;
+    border-radius: 5px;
+}
+.box-bottom {
+    width: 150px;
+    height: 100px;
+    background-color: #FFD700; /* Gold */
+    position: absolute;
+    bottom: 0;
+    border-radius: 5px;
+}
 
-.skill-item[data-icon="yt"]::before { content: '▶️'; }
-.skill-item[data-icon="yt"]::after { content: 'YouTube Ads'; font-size: 0.7em;}
+.skill-item {
+    position: absolute;
+    padding: 5px 10px;
+    background-color: rgba(255, 0, 0, 0.8);
+    border: 1px solid #F0F0F0;
+    border-radius: 5px;
+    color: #F0F0F0;
+    white-space: nowrap;
+    opacity: 0; /* Initial state for animation */
+    transform: scale(0.5) translateY(100px); /* Positioning for animation */
+}
+/* Positioning the skill items near the box */
+#magic-box .skill-item:nth-child(3) { top: -80px; left: -10px; } /* SEO */
+#magic-box .skill-item:nth-child(4) { top: -110px; left: 80px; } /* Content Writing */
+#magic-box .skill-item:nth-child(5) { top: -50px; left: 150px; } /* Social Media Mkt. */
+#magic-box .skill-item:nth-child(6) { top: -140px; left: -50px; } /* Data Analysis */
+#magic-box .skill-item:nth-child(7) { top: -10px; left: -100px; } /* Keyword Research */
 
-.skill-item[data-icon="canva"]::before { content: '🎨'; }
-.skill-item[data-icon="canva"]::after { content: 'Canva Design'; font-size: 0.7em;}
-
-.skill-item[data-icon="video"]::before { content: '🎬'; }
-.skill-item[data-icon="video"]::after { content: 'Video Editing'; font-size: 0.7em;}
-
-.skill-item[data-icon="photo"]::before { content: '🖼️'; }
-.skill-item[data-icon="photo"]::after { content: 'Photo Editing'; font-size: 0.7em;}
-
-
-/* 6. Contact & Footer */
-.contact-section { 
-    padding: 80px 0; 
-    background-color: #1a1a1a; 
+/* --- CONTACT SECTION --- */
+.contact-section {
+    text-align: center;
+    padding: 80px 0;
 }
 .contact-links {
-    margin-top: 40px;
-    display: flex;
-    justify-content: center;
-    gap: 30px;
+    margin: 30px 0;
 }
-.contact-link {
-    background-color: #FF0000;
-    color: #FFFFFF;
-    padding: 15px 30px;
+.btn {
+    display: inline-block;
+    padding: 12px 25px;
+    margin: 0 10px;
+    text-decoration: none;
     border-radius: 5px;
-    font-size: 1.1em;
-    font-weight: 600;
-    transition: background-color 0.3s ease;
+    transition: background-color 0.3s, color 0.3s;
 }
-.contact-link:hover { background-color: #E00000; }
-
-.footer { background-color: #0d0d0d; color: #888; padding: 30px 0; font-size: 0.9em; }
-
-/* Responsive Design */
-@media (max-width: 992px) {
-    .main-grid { grid-template-columns: 1fr; gap: 40px; }
-    .education-section { padding-right: 0; }
-    #student-character { display: none; } /* Hide character on small screens */
-    #welcome-character { font-size: 60px; right: 20px; }
+.btn {
+    background-color: #FF0000;
+    color: #F0F0F0;
+    border: 2px solid #FF0000;
 }
-@media (max-width: 768px) {
-    .hero-content h1 { font-size: 3em; }
-    .navbar { padding: 15px 20px; }
-    .nav-links { display: none; } /* Mobile Menu would be added here */
-    .skills-grid { grid-template-columns: 1fr; }
+.btn.secondary {
+    background-color: transparent;
+    color: #FF0000;
+    border: 2px solid #FF0000;
+}
+.btn:hover {
+    background-color: #CC0000;
+    border-color: #CC0000;
+}
+.btn.secondary:hover {
+    background-color: #FF0000;
+    color: #F0F0F0;
+}
+.footer-note {
+    margin-top: 50px;
+    color: #AAAAAA;
+    font-size: 14px;
 }
