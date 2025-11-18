@@ -11,19 +11,19 @@
     
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 </head>
 <body>
     
     <div id="preloader-screen">
         <div class="preloader-content">
-            <div class="tool-assembly-box">
-                <div class="tool tool-monitor"></div>
-                <div class="tool tool-chair"></div>
-                <div class="tool tool-keyboard"></div>
-                <div class="tool tool-mouse"></div>
-                <div class="tool tool-person"></div>
+            <div id="welcome-character">
+                <div class="head"></div>
+                <div class="body"></div>
+                <div class="arms"></div>
             </div>
-            <p id="loading-message">Please wait a moment...</p>
+            <p id="loading-message">Initializing...</p>
         </div>
     </div>
     
@@ -31,75 +31,82 @@
         <div class="container">
             <h1 class="logo">RichTech</h1>
             <ul>
-                <li><a href="#about">About</a></li>
-                <li><a href="#education">Education</a></li>
+                <li><a href="#hero">Hero</a></li>
                 <li><a href="#skills">Skills</a></li>
+                <li><a href="#education">Education</a></li>
                 <li><a href="#contact">Contact</a></li>
+                <li><a href="#about-me">About Me</a></li>
             </ul>
         </div>
     </nav>
 
-    <header id="about" class="info-section">
-        <div class="container">
-            <div class="header-text">
-                <h2>Md Rubayet Sikder</h2>
-                <h1>Digital Marketing Expert</h1>
-                <p>Strategist, Content Creator & SEO Specialist</p>
+    <header id="hero" class="info-section">
+        <div class="container hero-content">
+            <div class="hero-photo-box">
+                <img src="https://i.ibb.co/LNP4Q3F/1000156527.jpg" alt="Md Rubayet Sikder Professional Photo" class="profile-photo">
+            </div>
+            <div class="hero-text">
+                <div id="text-slider">
+                    <h1 class="slide-text">Welcome To My Website</h1>
+                    <h1 class="slide-text">I'm Rubayet Sikder</h1>
+                    <h1 class="slide-text">Founder and CEO of Rich Tech Community</h1>
+                </div>
+                <h2>Digital Marketing Expert</h2>
                 <div class="experience-box">
                     <p>Experience: Freelancing Sector since 2024</p>
                 </div>
             </div>
-            <div id="welcome-character">
-                <div class="head"></div>
-                <div class="body"></div>
-            </div>
         </div>
     </header>
 
-    <section id="education" class="info-section">
+    <section id="skills" class="info-section">
         <div class="container">
-            <h2>Education</h2>
-            <div class="education-content">
-                <div class="edu-items-box">
-                    <div class="edu-item">
-                        <h3>2024: HSC (Humanities)</h3>
-                        <p>College: Degree College (Dhaka, Bangladesh)</p>
-                    </div>
-                    <div class="edu-item">
-                        <h3>2022: SSC (General)</h3>
-                        <p>School: Local High School (Dhaka, Bangladesh)</p>
-                    </div>
-                    <div class="edu-item">
-                        <h3>Courses: Digital Marketing & SEO</h3>
-                        <p>Platform: Various Online Courses (2023-2024)</p>
-                    </div>
+            <h2>My Core Skills</h2>
+            <div class="skills-animation-area">
+                
+                <div id="skill-robot">
+                    <div class="robot-head"></div>
+                    <div class="robot-body"></div>
                 </div>
-                <div id="student-character">
-                    <div class="book"></div>
-                    <div class="bag"></div>
+
+                <div id="magic-box">
+                    <div class="box-top"></div>
+                    <div class="box-bottom"></div>
+                    
+                    <div class="skill-item"><i class="fas fa-search"></i> SEO</div>
+                    <div class="skill-item"><i class="fas fa-pencil-alt"></i> Content Writing</div>
+                    <div class="skill-item"><i class="fab fa-facebook-f"></i> Social Media Mkt.</div>
+                    <div class="skill-item"><i class="fas fa-chart-line"></i> Data Analysis</div>
+                    <div class="skill-item"><i class="fas fa-lightbulb"></i> Keyword Research</div>
+                    <div class="skill-item"><i class="fas fa-cogs"></i> Digital Strategy</div>
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="skills" class="info-section">
-        <div class="container">
-            <h2>Skills</h2>
-            <div class="skills-content">
-                <div id="skill-robot">
-                    <div class="robot-head"></div>
-                    <div class="robot-body"></div>
-                </div>
-                
-                <div id="magic-box">
-                    <div class="box-top"></div>
-                    <div class="box-bottom"></div>
+    <section id="education" class="info-section">
+        <div class="container education-content">
+            
+            <div id="student-character">
+                <div class="head"></div>
+                <div class="body"></div>
+                <div class="book"></div>
+                <div class="laptop"></div>
+            </div>
 
-                    <div class="skill-item">SEO</div>
-                    <div class="skill-item">Content Writing</div>
-                    <div class="skill-item">Social Media Mkt.</div>
-                    <div class="skill-item">Data Analysis</div>
-                    <div class="skill-item">Keyword Research</div>
+            <div class="edu-items-box">
+                <h2>Education Background</h2>
+                <div class="edu-item">
+                    <h3>BSc (Computer Science) - 2024</h3>
+                    <p>Dhaka University, Dhaka, Bangladesh</p>
+                </div>
+                <div class="edu-item">
+                    <h3>HSC (Science) - 2020</h3>
+                    <p>Govt. College Name, Dhaka, Bangladesh</p>
+                </div>
+                <div class="edu-item">
+                    <h3>SSC (Science) - 2018</h3>
+                    <p>School Name, Dhaka, Bangladesh</p>
                 </div>
             </div>
         </div>
@@ -107,15 +114,37 @@
 
     <section id="contact" class="contact-section">
         <div class="container">
-            <h2>Contact Me</h2>
+            <h2>Get in Touch</h2>
             <p>Ready to boost your business? Let's talk!</p>
             <div class="contact-links">
-                <a href="mailto:rubayetsikder333@gmail.com" class="btn">Email Me</a>
-                <a href="#" class="btn secondary">LinkedIn</a>
+                
+                <a href="https://wa.me/8801XXXXXXXXXX" target="_blank" class="btn contact-whatsapp">
+                    <i class="fab fa-whatsapp"></i> WhatsApp
+                </a>
+                
+                <a href="mailto:your.email@gmail.com" class="btn contact-gmail">
+                    <i class="fas fa-envelope"></i> Gmail
+                </a>
+
+                <a href="https://facebook.com/yourusername" target="_blank" class="btn contact-facebook">
+                    <i class="fab fa-facebook-f"></i> Facebook
+                </a>
             </div>
-            <p class="footer-note">All rights reserved © 2025 Md Rubayet Sikder</p>
         </div>
     </section>
+    
+    <section id="about-me" class="info-section about-me-section">
+        <div class="container">
+            <h2>About Me</h2>
+            <p>I am a passionate Digital Marketing Expert with one impactful trait: calmness and eagerness to deliver the best to clients. I have been working in the freelancing sector since 2024, focusing on creating data-driven content and optimizing online presence for businesses. My goal is to use strategic digital solutions to achieve measurable success for every project I undertake.</p>
+        </div>
+    </section>
+
+    <footer class="footer-note">
+        <div class="container">
+            <p>© 2024 Md Rubayet Sikder. All Rights Reserved.</p>
+        </div>
+    </footer>
     
     <script src="script.js"></script>
 
