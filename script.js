@@ -20,24 +20,24 @@ document.addEventListener('DOMContentLoaded', function() {
     // --- Preloader Sequence ---
     // 1. Character runs in (1.5s)
     masterTl.to(welcomeChar, {
-        x: '-50%', // Move to center
+        x: '0%', // Move to center relative to its position, should be visually centered by CSS
         opacity: 1,
         duration: 1.5,
         ease: "power2.inOut"
-    }, 0); // Start at the beginning of the timeline
+    }, 0); 
 
     // 2. Character welcomes (arms wide, 0.5s)
     masterTl.to(welcomeChar.querySelector('.arms'), {
         rotation: 90, 
         duration: 0.5,
         ease: "back.out(1.7)"
-    }, 0.5); // Starts halfway through the run-in
+    }, 0.5); 
 
     // 3. Loading message appears
-    masterTl.to(loadingMessage, { opacity: 1, duration: 0.5 }, 1.0); // Starts 1 second in
+    masterTl.to(loadingMessage, { opacity: 1, duration: 0.5 }, 1.0); 
     
     // 4. Fade out preloader and start Hero Slider setup immediately after (Total preloader time ~4s)
-    masterTl.add("PreloaderEnd", 3.0); // Label for the end of the visual loading part
+    masterTl.add("PreloaderEnd", 3.0); 
 
     masterTl.to(preloader, {
         opacity: 0, 
@@ -51,9 +51,10 @@ document.addEventListener('DOMContentLoaded', function() {
     // 2. HERO SLIDER ANIMATION (3-Second Loop - YELLOW TEXT)
     // =========================================================
     const slides = gsap.utils.toArray(".slide-text");
-    let currentSlide = -1; // Start before the first slide
+    let currentSlide = -1;
 
     function slideText() {
+        
         // Hide previous slide (if any)
         if (currentSlide !== -1) {
             gsap.to(slides[currentSlide], {
@@ -61,7 +62,6 @@ document.addEventListener('DOMContentLoaded', function() {
                 y: "-100%", 
                 duration: 0.7, 
                 ease: "power2.inOut",
-                className: 'slide-text' // Ensure class is reset
             });
         }
         
@@ -69,13 +69,12 @@ document.addEventListener('DOMContentLoaded', function() {
         currentSlide = (currentSlide + 1) % slides.length;
 
         // Show next slide
-        gsap.set(slides[currentSlide], { y: "100%" }); // Reset next slide position
+        gsap.set(slides[currentSlide], { y: "100%", opacity: 0 }); // Reset next slide position
         gsap.to(slides[currentSlide], {
             opacity: 1, 
             y: "0%", 
             duration: 0.7, 
             ease: "power2.inOut",
-            className: 'slide-text active-text' // Set active class
         });
         
         // Loop: Wait 2 seconds, then call the function again
@@ -83,7 +82,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     // Start the slider animation after the preloader timeline finishes
-    masterTl.call(slideText, [], "PreloaderEnd+=0.5"); // Start 0.5s after preloader fades
+    masterTl.call(slideText, [], "PreloaderEnd+=0.5");
 
 
     // =========================================================
@@ -103,7 +102,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // 3.1 Robot and Box appear
     .from([robot, magicBox], {
         opacity: 0,
-        y: 100, // Move from bottom
+        y: 100,
         duration: 1.5,
         ease: "back.out(1.2)"
     }, 0)
@@ -115,7 +114,7 @@ document.addEventListener('DOMContentLoaded', function() {
         stagger: 0.2, 
         duration: 0.6,
         ease: "back.out(2)"
-    }, 1.0); // Starts 1 second into the timeline
+    }, 1.0);
 
 
     // =========================================================
@@ -189,4 +188,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // Navbar reveal (after preloader is gone)
     masterTl.from(".navbar", {
         y: -100,
-
+        duration: 1,
+        ease: "power3.out"
+    }, "PreloaderEnd-=0.5");
+});
