@@ -10,87 +10,80 @@ document.addEventListener('DOMContentLoaded', function() {
     const welcomeChar = document.getElementById('welcome-character');
     const loadingMessage = document.getElementById('loading-message');
     
-    const tl = gsap.timeline({defaults: {ease: "power2.out"}});
+    // Create the main timeline for Preloader and initial Hero setup
+    const masterTl = gsap.timeline({defaults: {ease: "power2.out"}});
     
     // Initial State: Character off-screen right
     gsap.set(welcomeChar, { x: '150%', opacity: 0, scale: 0.8 });
     gsap.set(loadingMessage, { opacity: 0 });
 
-    // Step 1: Character runs in (1.5s)
-    tl.to(welcomeChar, {
+    // --- Preloader Sequence ---
+    // 1. Character runs in (1.5s)
+    masterTl.to(welcomeChar, {
         x: '-50%', // Move to center
         opacity: 1,
         duration: 1.5,
         ease: "power2.inOut"
-    });
+    }, 0); // Start at the beginning of the timeline
 
-    // Step 2: Character welcomes (arms wide, 0.5s)
-    tl.to(welcomeChar.querySelector('.arms'), {
+    // 2. Character welcomes (arms wide, 0.5s)
+    masterTl.to(welcomeChar.querySelector('.arms'), {
         rotation: 90, 
         duration: 0.5,
         ease: "back.out(1.7)"
-    }, "<"); // Start with character move
+    }, 0.5); // Starts halfway through the run-in
 
-    // Step 3: Loading message appears
-    tl.to(loadingMessage, { opacity: 1, duration: 0.5 }, "+=0.5"); 
+    // 3. Loading message appears
+    masterTl.to(loadingMessage, { opacity: 1, duration: 0.5 }, 1.0); // Starts 1 second in
     
-    // Step 4: Hold for a moment, then fade out preloader
-    tl.to(preloader, {
+    // 4. Fade out preloader and start Hero Slider setup immediately after (Total preloader time ~4s)
+    masterTl.add("PreloaderEnd", 3.0); // Label for the end of the visual loading part
+
+    masterTl.to(preloader, {
         opacity: 0, 
         duration: 1.0, 
         display: 'none', 
         ease: "power1.inOut"
-    }, "+=1.5"); // Total preloader time ~4 seconds
+    }, "PreloaderEnd");
 
 
     // =========================================================
     // 2. HERO SLIDER ANIMATION (3-Second Loop - YELLOW TEXT)
     // =========================================================
     const slides = gsap.utils.toArray(".slide-text");
-    let currentSlide = 0;
+    let currentSlide = -1; // Start before the first slide
 
     function slideText() {
-        // Hide current slide (move up)
-        gsap.to(slides[currentSlide], {
-            opacity: 0, 
-            y: "-100%", 
-            duration: 0.7, 
-            ease: "power2.inOut",
-            className: 'slide-text'
-        });
-
-        // Calculate next slide index (resets after the last slide)
+        // Hide previous slide (if any)
+        if (currentSlide !== -1) {
+            gsap.to(slides[currentSlide], {
+                opacity: 0, 
+                y: "-100%", 
+                duration: 0.7, 
+                ease: "power2.inOut",
+                className: 'slide-text' // Ensure class is reset
+            });
+        }
+        
+        // Calculate next slide index
         currentSlide = (currentSlide + 1) % slides.length;
 
-        // Show next slide (move in from below)
+        // Show next slide
         gsap.set(slides[currentSlide], { y: "100%" }); // Reset next slide position
         gsap.to(slides[currentSlide], {
             opacity: 1, 
             y: "0%", 
             duration: 0.7, 
             ease: "power2.inOut",
-            className: 'slide-text active-text'
+            className: 'slide-text active-text' // Set active class
         });
         
-        // After the last slide, wait 2 seconds, then restart the whole loop
-        if (currentSlide === slides.length - 1) {
-             // If last slide, set a timer to run the next slide
-             gsap.delayedCall(2, slideText);
-        } else {
-             // For middle slides, run next slide after 2 seconds
-             gsap.delayedCall(2, slideText);
-        }
+        // Loop: Wait 2 seconds, then call the function again
+        gsap.delayedCall(2.0, slideText);
     }
 
-    // Start the slider animation after the preloader finishes
-    tl.call(() => {
-        // Initially set the first slide
-        gsap.set(slides[0], { opacity: 1, y: "0%", className: 'slide-text active-text' });
-        
-        // Start the sliding loop after an initial display time
-        gsap.delayedCall(2, slideText);
-
-    }, ">0.5");
+    // Start the slider animation after the preloader timeline finishes
+    masterTl.call(slideText, [], "PreloaderEnd+=0.5"); // Start 0.5s after preloader fades
 
 
     // =========================================================
@@ -108,9 +101,9 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     })
     // 3.1 Robot and Box appear
-    .to([robot, magicBox], {
-        opacity: 1,
-        y: 0, // Moves to final position
+    .from([robot, magicBox], {
+        opacity: 0,
+        y: 100, // Move from bottom
         duration: 1.5,
         ease: "back.out(1.2)"
     }, 0)
@@ -118,11 +111,12 @@ document.addEventListener('DOMContentLoaded', function() {
     .from(skillItems, {
         opacity: 0,
         scale: 0.5,
-        y: 100, // Appears to drop from the box
-        stagger: 0.2, // Skills revealed one by one
+        y: 100, 
+        stagger: 0.2, 
         duration: 0.6,
         ease: "back.out(2)"
-    }, "<0.5"); // Starts slightly after robot appears
+    }, 1.0); // Starts 1 second into the timeline
+
 
     // =========================================================
     // 4. EDUCATION ANIMATION (Student Character with look animation)
@@ -138,15 +132,15 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     })
     // 4.1 Character and box appear
-    .to(studentChar, {
-        opacity: 1, 
-        scale: 1, 
+    .from(studentChar, {
+        opacity: 0, 
+        scale: 0.5, 
         duration: 1.0,
         ease: "back.out(1.7)"
     }, 0)
-    .to('.edu-items-box', {
-        opacity: 1,
-        x: 0,
+    .from('.edu-items-box', {
+        opacity: 0,
+        x: -50,
         duration: 1.0,
     }, 0)
     // 4.2 Items stagger in
@@ -155,7 +149,7 @@ document.addEventListener('DOMContentLoaded', function() {
         y: 20,
         stagger: 0.2,
         duration: 0.5,
-    }, "<0.5")
+    }, 0.5)
     // 4.3 Character looking animation (Book -> Laptop -> Book)
     .to(studentChar.querySelector('.book'), {
         rotation: -10, // Tilt towards book
@@ -177,8 +171,8 @@ document.addEventListener('DOMContentLoaded', function() {
     // 5. GENERAL SECTION ANIMATION
     // =========================================================
     
-    // Smooth reveal of Hero details, About Me and Contact sections
-    gsap.utils.toArray(".hero-text, #about-me, #contact").forEach(section => {
+    // Smooth reveal of About Me and Contact sections
+    gsap.utils.toArray("#about-me, #contact").forEach(section => {
         gsap.from(section, {
             opacity: 0,
             y: 50,
@@ -193,10 +187,6 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     // Navbar reveal (after preloader is gone)
-    gsap.from(".navbar", {
+    masterTl.from(".navbar", {
         y: -100,
-        duration: 1,
-        delay: 0.5, 
-        ease: "power3.out"
-    });
-});
+
